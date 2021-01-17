@@ -13,7 +13,7 @@
         v-for="room in rooms" 
         v-bind:key="room._id" 
       >
-        <div class="mr-5" @click="showRoom(room.room)">
+        <div class="mr-3" @click="showRoom(room.room)">
           <v-icon color="#FFFFFF" left>
             mdi-account-group
           </v-icon>
@@ -102,7 +102,7 @@ export default {
 <style lang="scss" scoped>
   .rooms {
     background-color: var(--color-primary);
-    padding: 2rem 3rem 5rem;
+    padding: 2rem 1rem 5rem;
     min-height: 100vh;
     position: sticky;
     top: 0;
