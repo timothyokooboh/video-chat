@@ -10,7 +10,10 @@ import FormSignup from '@/components/auth/FormSignup.vue';
 import AppNotification from '@/components/ui/AppNotification.vue';
 
 export default {
-  components: { FormSignup, AppNotification }
+    components: { 
+        FormSignup, 
+        AppNotification,
+    }
 }
 </script>
 
