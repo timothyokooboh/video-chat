@@ -40,7 +40,7 @@ export default {
 <style lang="scss">
 
 html {
-  font-size: 62.5%; // 1rem = 10px
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   // variables
