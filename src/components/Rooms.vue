@@ -13,11 +13,11 @@
         v-for="room in rooms" 
         v-bind:key="room._id" 
       >
-        <div class="mr-5" >
+        <div class="mr-5" @click="showRoom(room.room)">
           <v-icon color="#FFFFFF" left>
             mdi-account-group
           </v-icon>
-          <span @click="showRoom(room.room)"> {{room.room}} </span>
+          <span> {{room.room}} </span>
         </div>
 
         <div>

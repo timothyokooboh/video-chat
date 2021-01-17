@@ -24,7 +24,6 @@
                 </v-btn>
             </div>
         </form>
-       
     </div>
 </template>
 
