@@ -18,7 +18,7 @@
                 </v-btn>
             </div>
 
-            <div class="mics" v-if="joiningRoom">
+            <div class="mics" v-if="joinedRoom">
                 <div class="mx-3" @click="endCall">
                     <v-icon color="#F74D31" class="icon">mdi-phone-off</v-icon>
                 </div>
@@ -46,7 +46,7 @@
             return {
                 logsCount: 0,
                 isVideoOn: true,
-                joiningRoom: false
+                joinedRoom: false
             }
         },
         methods: {
@@ -74,8 +74,8 @@
                 this.logsCount = data
             });
 
-            EventBus.$on("joining-room", () => {
-                this.joiningRoom = true;
+            EventBus.$on("joined-room", () => {
+                this.joinedRoom = true;
             })
         }
     }

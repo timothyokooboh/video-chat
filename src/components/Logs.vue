@@ -55,7 +55,7 @@ export default {
         top: 50%;
         right: 2rem;
         padding: 2rem 3rem;
-        max-width: 25rem;
+        max-width: 22rem;
         width: 90%;
         z-index: 6000;
         background-color: var(--color-grey);

@@ -41,7 +41,7 @@ export default {
             activeRoom: '',
             previewTracks: '',
             identity: '',
-            roomName: null,
+            roomName: null
         }
     },
 
@@ -56,7 +56,6 @@ export default {
         async getAccessToken() {
             return await TwilioDataService.getAccessToken(this.username);
         },
-
         // Trigger log events 
         dispatchLog(message) {
             EventBus.$emit('new_log', message);
@@ -98,7 +97,8 @@ export default {
         },
 
         async connectToTwilio(token, options, roomName) {
-            const room = await Twilio.connect(token, options)
+            const room = await Twilio.connect(token, options);
+            EventBus.$emit("joined-room");
             const vm = this;
 
             console.log('Successfully joined a Room: ', room);
@@ -146,10 +146,8 @@ export default {
             this.loading = true;
             const vm = this;
 
-            EventBus.$emit("joining-room");
-
             try {
-                const data = await this.getAccessToken()
+                const data = await this.getAccessToken();
                 vm.roomName = null;
                 console.log(data)
                 const token = data.data.token;
@@ -192,12 +190,12 @@ export default {
    },
 
    created() {
-        EventBus.$on('show_room', (room_name) => {
+        EventBus.$on('join-room', (room_name) => {
             this.createChat(room_name);
         })
 
         EventBus.$on('end-call', () => {
-            this.leaveRoomIfJoined()
+            this.leaveRoomIfJoined();
         })
 
         EventBus.$on('off-video', async () => {

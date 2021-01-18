@@ -84,6 +84,9 @@ export default {
             catch(err) {
                 console.log(err.response);
                 this.loading = false;
+                EventBus.$emit("signup-failed", {
+                    message: err.response.data.message
+                });
             }
         },
         storeDetails(userId) {

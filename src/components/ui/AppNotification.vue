@@ -48,6 +48,14 @@ export default {
         }
     },
     mounted() {
+         EventBus.$on("signup-failed", data => {
+            this.show = true;
+            this.message = data.message;
+            this.error = true
+
+            this.hideNotification()
+         });
+
         EventBus.$on("enter-username", data => {
             this.show = true;
             this.message = data.message;

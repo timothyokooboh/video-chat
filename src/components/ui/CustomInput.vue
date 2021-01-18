@@ -4,14 +4,13 @@
         @input="$emit('input', $event.target.value)"
         :style="{backgroundColor: bgColor, height}"
     >
-    
 </template>
 
 <script>
 export default {
     props: {
         value: null, // to allow any data type
-        bgColor: String,
+        bgColor: String, 
         height: String
     }
 }

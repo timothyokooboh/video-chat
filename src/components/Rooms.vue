@@ -1,6 +1,6 @@
 <template>
   <div class="rooms">
-    <div v-if="!rooms.length">
+    <div v-if="!rooms.length" class="white--text">
       <div class="py-3">No rooms yet</div>
       <h3>Click the plus icon to create a room</h3>
     </div>
@@ -13,7 +13,7 @@
         v-for="room in rooms" 
         v-bind:key="room._id" 
       >
-        <div class="mr-3" @click="showRoom(room.room)">
+        <div class="mr-3" @click="joinRoom(room.room)">
           <v-icon color="#FFFFFF" left>
             mdi-account-group
           </v-icon>
@@ -55,8 +55,8 @@ export default {
     }
   },
   methods: {
-    showRoom(room) {
-      EventBus.$emit('show_room', room);
+    joinRoom(room) {
+      EventBus.$emit('join-room', room);
     },
     async getRooms() {
       try {
