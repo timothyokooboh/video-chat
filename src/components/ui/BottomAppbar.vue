@@ -55,7 +55,7 @@
             },
             endCall() {
                 EventBus.$emit("end-call");
-                this.joiningRoom = false;
+                this.joinedRoom = false;
             },
             showLogs() {
                 EventBus.$emit("show-logs")
