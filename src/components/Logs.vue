@@ -46,6 +46,12 @@ export default {
             this.logCount = 0;
         })
     },
+    beforeDestroy() {
+        // off events to avoid leaks
+        EventBus.$off('new_log');
+        EventBus.$off('show-logs')
+        EventBus.$off('end-call');
+    }
 }
 </script>
 

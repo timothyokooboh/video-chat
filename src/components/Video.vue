@@ -211,6 +211,12 @@ export default {
         // disconnect from the room, if joined.
         window.addEventListener('beforeunload', this.leaveRoomIfJoined);
 
+    },
+    beforeDestroy() {
+        EventBus.$off('join-room');
+        EventBus.$off('end-call');
+        EventBus.$off('off-video');
+        EventBus.$off('on-video');
     }
 
 }

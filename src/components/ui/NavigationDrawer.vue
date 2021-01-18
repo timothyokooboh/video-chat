@@ -27,6 +27,9 @@ export default {
         EventBus.$on("show-navigation-drawer", () => {
             this.drawer = !this.drawer;
         })
+    },
+    beforeDestroy() {
+        EventBus.$off("show-navigation-drawer");
     }
 }
 </script>

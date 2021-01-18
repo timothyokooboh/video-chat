@@ -77,6 +77,11 @@
             EventBus.$on("joined-room", () => {
                 this.joinedRoom = true;
             })
+        },
+        beforeDestroy() {
+            // off events to avoid leaks
+            EventBus.$off("logs-changed");
+            EventBus.$off("joined-room");
         }
     }
 </script>

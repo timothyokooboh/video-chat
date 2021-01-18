@@ -95,6 +95,9 @@ export default {
     });
 
   },
+  beforeDestroy() {
+    EventBus.$off('new-room');
+  }
 
 }
 </script>
