@@ -16,7 +16,7 @@ const routes = [
         path: "/chat",
         component: () => import("../views/Chat.vue"),
         beforeEnter(to, from, next) {
-            if(store.getters.auth) {
+            if(store.getters.isAuth) {
                 next()
             } else {
                 next("/")

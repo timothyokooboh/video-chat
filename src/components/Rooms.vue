@@ -73,11 +73,13 @@ export default {
       try {
         const room = await ChatRoomDataService.deleteRoom(id, userId)
         console.log(room)
-        this.getRooms();
 
         EventBus.$emit("room-deleted", {
           message: "Room deleted successfully"
         })
+
+        await this.getRooms();
+        this.$store.commit("incrementRoomKey")
       }
       catch(err) {
         console.log(err.response)
@@ -90,8 +92,8 @@ export default {
   created() {
     this.getRooms();
 
-    EventBus.$on('new-room', () => {
-      this.getRooms();
+    EventBus.$on('new-room', async () => {
+      await this.getRooms();
     });
 
   },

@@ -69,7 +69,7 @@ export default {
 
                 this.$store.commit("isAuthenticated", {
                     username: this.user,
-                    auth: true,
+                    isAuth: true,
                     userId: userId
                 });
 
@@ -104,7 +104,7 @@ export default {
         max-width: 50rem;
         width: 90%;
         margin: 0 auto;
-        padding: 3rem 2rem;
+        padding: 2rem 2rem 3rem;
         border-radius: 2.2rem;
 
         h1 {
@@ -112,6 +112,11 @@ export default {
 
             @media all and (max-width: 27.25em) {
                 font-size: 1.6rem;
+                font-weight: 500;
+            }
+
+            @media all and (max-width: 22.81em) {
+                font-size: 1.5rem;
                 font-weight: 500;
             }
         }

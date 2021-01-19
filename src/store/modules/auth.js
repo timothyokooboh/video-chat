@@ -8,7 +8,7 @@ const state = {
 }
 
 const getters = {
-    auth(state) {
+    isAuth(state) {
         return state.isAuth
     },
     username(state) {
@@ -22,7 +22,7 @@ const getters = {
 const mutations = {
     isAuthenticated(state, payload) {
         state.username = payload.username;
-        state.isAuth = payload.auth;
+        state.isAuth = payload.isAuth;
         state.userId = payload.userId
     },
 

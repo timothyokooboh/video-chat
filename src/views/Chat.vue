@@ -22,7 +22,7 @@
 
         <div class="main-layout">
             <div class="room-list">
-                <app-rooms />
+                <app-rooms :key="roomKey"/>
             </div>
 
             <div class="app-video">
@@ -45,6 +45,7 @@ import BottomAppbar from '../components/ui/BottomAppbar';
 import AppNotification from "@/components/ui/AppNotification";
 import {EventBus} from "@/Event";
 import NavigationDrawer from '../components/ui/NavigationDrawer.vue';
+import {mapGetters} from "vuex";
 
 export default {
     data() {
@@ -62,6 +63,9 @@ export default {
         BottomAppbar,
         AppNotification,
         NavigationDrawer 
+    },
+    computed: {
+        ...mapGetters(["roomKey"])
     },
     created() {
         EventBus.$on("add-room", () => {

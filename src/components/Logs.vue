@@ -59,10 +59,9 @@ export default {
     .logs {
         position: absolute;
         top: 50%;
-        right: 2rem;
+        right: 0;
         padding: 2rem 3rem;
-        max-width: 22rem;
-        width: 90%;
+        margin: 0 2rem;
         z-index: 6000;
         background-color: var(--color-grey);
         border-top-left-radius: 2rem;

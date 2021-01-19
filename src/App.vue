@@ -26,7 +26,7 @@ export default {
     if(!isAuthenticated || !username || !userId) return;
 
     this.$store.commit("isAuthenticated", {
-      auth: isAuthenticated,
+      isAuth: isAuthenticated,
       username,
       userId
     });
