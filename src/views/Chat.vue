@@ -26,7 +26,7 @@
             </div>
 
             <div class="app-video">
-                <app-video :key="videoKey"/>
+                <app-video />
             </div>
     
         </div>
@@ -50,8 +50,7 @@ import {mapGetters} from "vuex";
 export default {
     data() {
         return {
-            addRoom: false,
-            videoKey: 0
+            addRoom: false
         }
     },
     components: {
@@ -80,9 +79,9 @@ export default {
             this.addRoom = false;
         })
 
-        EventBus.$on("end-call", () => {
+        /*EventBus.$on("end-call", () => {
             this.videoKey++;
-        })
+        })*/
 
     }
     

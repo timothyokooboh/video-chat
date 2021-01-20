@@ -34,7 +34,6 @@ export default {
     data() {
         return {
             loading: false,
-            data: {},
             isLocalTrack: false,
             localTrack: "",
             remoteTrack: '',
@@ -100,8 +99,18 @@ export default {
                 this.activeRoom.disconnect();
 
                 // turn of camera lights
-                this.localTrack.mediaStreamTrack.stop()
+                this.localTrack.mediaStreamTrack.stop();
+
+                // Remove local track from the DOM
+                document.querySelector("#localTrack").innerHTML = "";
+
+                // Reset the value of isLocalTrack
+                this.isLocalTrack = false;
+
+                this.loading = false;
+                this.roomName = null;
             }
+
         },
 
         async connectToTwilio(token, options, roomName) {
@@ -118,11 +127,11 @@ export default {
             vm.loading = false;
 
             // Attach the Tracks of all the remote Participants.
-            room.participants.forEach(function(participant) {
+            /*room.participants.forEach(function(participant) {
                 console.log(participant)
                 let previewContainer = document.getElementById('remoteTrack');
                 vm.attachParticipantTracks(participant, previewContainer);
-            });
+            });*/
 
             // When a Participant joins the Room, log the event.
             room.on('participantConnected', function(participant) {
@@ -140,7 +149,6 @@ export default {
             room.on('trackUnsubscribed', function(track, participant) {
                 vm.dispatchLog(participant.identity + " removed track: " + track.kind);
                 vm.detachTracks([track]);
-                console.log("maybe it will work")
             });
 
             // When a Participant leaves the Room, detach its Tracks.
