@@ -79,7 +79,7 @@ export default {
         })
 
         await this.getRooms();
-        this.$store.commit("incrementRoomKey")
+        this.$store.commit("incrementRoomKey");
       }
       catch(err) {
         console.log(err.response)

@@ -46,7 +46,11 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["username"])
+        ...mapGetters(["username"]),
+        windowWidth() {
+            let windowWidth = window.innerWidth;
+            return (35 * windowWidth)/100
+        }
     },
     methods: {
         showNavigationDrawer() {
@@ -76,6 +80,7 @@ export default {
 
         // Detach the Tracks from the DOM.
         detachTracks(tracks) {
+            console.log(tracks)
             tracks.forEach( (track) => {
                 track.detach().forEach((detachedElement) => {
                     detachedElement.remove();
@@ -93,6 +98,9 @@ export default {
         leaveRoomIfJoined() {
             if (this.activeRoom) {
                 this.activeRoom.disconnect();
+
+                // turn of camera lights
+                this.localTrack.mediaStreamTrack.stop()
             }
         },
 
@@ -132,6 +140,7 @@ export default {
             room.on('trackUnsubscribed', function(track, participant) {
                 vm.dispatchLog(participant.identity + " removed track: " + track.kind);
                 vm.detachTracks([track]);
+                console.log("maybe it will work")
             });
 
             // When a Participant leaves the Room, detach its Tracks.
@@ -154,9 +163,12 @@ export default {
 
                 let connectOptions = {
                     name: room_name,
-                    // logLevel: 'debug',
                     audio: true,
-                    video: true
+                    video: {
+                        width: {
+                            max: this.windowWidth
+                        }
+                    }
                 };
                 // before a user enters a new room,
                 // disconnect the user from other rooms they have already joined
@@ -169,7 +181,6 @@ export default {
                 await this.connectToTwilio(token, connectOptions, room_name);
         
                 if(!vm.isLocalTrack) {
-
                     createLocalVideoTrack().then(track => {
                         console.log(track)
                         this.localTrack = track;
