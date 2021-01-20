@@ -58,7 +58,6 @@ export default {
             this.loading = true;
 
             try {
-
                 const user = await AuthDataService.addUser({
                     username: this.user
                 })

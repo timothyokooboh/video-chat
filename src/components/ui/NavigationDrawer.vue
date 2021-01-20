@@ -8,7 +8,6 @@
             class="side-nav"
         >
             <app-rooms @click.native="drawer = false" :key="roomKey" />
-               
         </v-navigation-drawer>
     </div>
 </template>
@@ -36,7 +35,7 @@ export default {
         })
     },
     beforeDestroy() {
-        EventBus.$off("show-navigation-drawer");
+       EventBus.$off("show-navigation-drawer");
     }
 }
 </script>

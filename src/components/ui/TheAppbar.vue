@@ -52,7 +52,7 @@ export default {
             this.$store.commit("signOut");
         },
         showNavigationDrawer() {
-            EventBus.$emit("show-navigation-drawer")
+            EventBus.$emit("show-navigation-drawer");
         }
     }
 }

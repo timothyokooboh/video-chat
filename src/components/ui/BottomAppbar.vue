@@ -12,7 +12,7 @@
                     color="#34A0FB"
                     class="white--text px-5"
                     small
-                    @click="addRoom"
+                    @click="$emit('add-room')"
                 >
                     <v-icon>mdi-plus</v-icon>
                 </v-btn>
@@ -69,15 +69,12 @@
             }
         },
         methods: {
-            addRoom() {
-                EventBus.$emit("add-room");
+            showLogs() {
+                EventBus.$emit("show-logs");
             },
             endCall() {
                 EventBus.$emit("end-call");
                 this.joinedRoom = false;
-            },
-            showLogs() {
-                EventBus.$emit("show-logs")
             },
             offVideo() {
                 this.isVideoOn = !this.isVideoOn;

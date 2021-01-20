@@ -6,7 +6,7 @@
 
         <app-notification />
 
-        <app-logs class="app-logs"/>
+        <app-logs class="app-logs" />
 
         <div class="addroom-wrapper" v-if="addRoom" @click.self="addRoom = false">
             <div>
@@ -28,49 +28,43 @@
             <div class="app-video">
                 <app-video />
             </div>
-    
         </div>
 
-        <bottom-appbar />
+        <bottom-appbar 
+            @add-room="addRoom = true"
+        />
     </div>
 </template>
 
 <script>
 import AppRooms from '@/components/Rooms';
 import AppVideo from '@/components/Video';
-import AppLogs from '@/components/Logs';
-import AddRoom from '@/components/AddRoom';
 import TheAppbar from "@/components/ui/TheAppbar";
 import BottomAppbar from '../components/ui/BottomAppbar';
 import AppNotification from "@/components/ui/AppNotification";
 import {EventBus} from "@/Event";
-import NavigationDrawer from '../components/ui/NavigationDrawer.vue';
 import {mapGetters} from "vuex";
 
 export default {
     data() {
         return {
-            addRoom: false
+            addRoom: false,
         }
     },
     components: {
         AppRooms,
         AppVideo,
-        AppLogs,
-        AddRoom,
+        AppLogs: () => import("@/components/Logs"),
+        AddRoom: () => import("@/components/AddRoom"),
         TheAppbar,
         BottomAppbar,
         AppNotification,
-        NavigationDrawer 
+        NavigationDrawer: () => import("@/components/ui/NavigationDrawer")
     },
     computed: {
         ...mapGetters(["roomKey"])
     },
     created() {
-        EventBus.$on("add-room", () => {
-            this.addRoom = true;
-        })
-
         EventBus.$on("close-form", () => {
             this.addRoom = false;
         })
@@ -78,11 +72,10 @@ export default {
         EventBus.$on("new-room", () => {
             this.addRoom = false;
         })
-
-        /*EventBus.$on("end-call", () => {
-            this.videoKey++;
-        })*/
-
+    },
+    beforeDestroy() {
+        EventBus.$off("close-form");
+        EventBus.$off("new-room");
     }
     
 }
