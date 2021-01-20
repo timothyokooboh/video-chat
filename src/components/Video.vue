@@ -180,6 +180,7 @@ export default {
                 };
                 // before a user enters a new room,
                 // disconnect the user from other rooms they have already joined
+
                 this.leaveRoomIfJoined();
             
                 // remove any remote track when joining a new room

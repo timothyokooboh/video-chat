@@ -19,15 +19,34 @@
             </div>
 
             <div class="mics" v-if="joinedRoom">
-                <div class="mx-3" @click="endCall">
-                    <v-icon color="#F74D31" class="icon">mdi-phone-off</v-icon>
-                </div>
-                <div class="mx-3" @click="offVideo" v-if="isVideoOn">
-                    <v-icon class="icon" color="#F74D31">mdi-video-off</v-icon>
-                </div>
-                <div class="mx-3" @click="onVideo" v-if="!isVideoOn">
-                    <v-icon class="icon">mdi-video</v-icon>
-                </div>
+                <v-tooltip>
+                    <template v-slot:activator="{on}">
+                        <div class="mx-3" @click="endCall" v-on="on">
+                            <v-icon color="#F74D31" class="icon">mdi-phone-off</v-icon>
+                        </div>
+                    </template>
+                     <div>End call</div>
+                </v-tooltip>
+
+                <v-tooltip v-if="isVideoOn" >
+                    <template v-slot:activator="{on}">
+                        <div class="mx-3" @click="offVideo" v-on="on">
+                            <v-icon class="icon" color="#F74D31">mdi-video-off</v-icon>
+                        </div>
+                    </template>
+                    <div>Turn off video</div>
+                </v-tooltip>
+
+                <v-tooltip v-if="!isVideoOn">
+                    <template v-slot:activator="{on}">
+                        <div class="mx-3" @click="onVideo" v-on="on">
+                            <v-icon class="icon">mdi-video</v-icon>
+                        </div>
+                    </template>
+                    <div>
+                        Turn on video
+                    </div>
+                </v-tooltip>
             </div>
 
             <div @click="showLogs" class="icon logs">

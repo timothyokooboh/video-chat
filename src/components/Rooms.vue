@@ -57,7 +57,6 @@ export default {
   methods: {
     joinRoom(room) {
       EventBus.$emit('join-room', room);
-      console.log("after clicked")
     },
     async getRooms() {
       try {
