@@ -8,6 +8,7 @@
                     v-model="roomName" 
                     bgColor="#F8F8F8"
                     height="3.5rem"
+                    @keyup.enter.native="createNewRoom"
                 />
             </div>
             

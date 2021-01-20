@@ -9,6 +9,7 @@
                     v-model="user" 
                     bgColor="#F8F8F8"
                     height="3.5rem"
+                    @keyup.enter.native="submit"
                 />
             </div>
 
