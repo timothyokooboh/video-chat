@@ -203,19 +203,23 @@ export default {
    created() {
         EventBus.$on('join-room', (room_name) => {
             this.createChat(room_name);
-        })
+        });
 
         EventBus.$on('end-call', () => {
             this.leaveRoomIfJoined();
-        })
+        });
 
         EventBus.$on('off-video', async () => {
             document.querySelector("#localTrack").innerHTML = "";
-        })
+        });
 
         EventBus.$on('on-video', async () => {
             const localMediaContainer = document.querySelector("#localTrack");
             localMediaContainer.appendChild(this.localTrack.attach());
+        });
+
+        EventBus.$on("sign-out", async() => {
+            this.leaveRoomIfJoined();
         })
 
         // When a user is about to transition away from this page, 
@@ -228,6 +232,7 @@ export default {
         EventBus.$off('end-call');
         EventBus.$off('off-video');
         EventBus.$off('on-video');
+        EventBus.$off("sign-out");
     }
 
 }
@@ -251,10 +256,6 @@ export default {
     #remoteTrack {
         border-radius: 1rem;
         width: 100%;
-    }
-
-    #remoteTrack {
-        height: 400px;
     }
 
     #localTrack {

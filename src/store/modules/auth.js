@@ -26,7 +26,7 @@ const mutations = {
         state.userId = payload.userId
     },
 
-    signout(state) {
+    signOut(state) {
         state.isAuth = false;
         state.username = "";
 

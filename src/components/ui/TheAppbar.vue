@@ -25,7 +25,7 @@
                             outlined
                             color="#F74D31"
                             class="mt-5 body-2"
-                            @click="signout"
+                            @click="signOut"
                         >
                             Sign out
                         </v-btn>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from"vuex";
+import {mapGetters} from"vuex";
 import { EventBus } from '@/Event';
 
 
@@ -46,7 +46,11 @@ export default {
         ...mapGetters(["username"])
     },
     methods: {
-        ...mapMutations(["signout"]),
+        signOut() {
+            EventBus.$emit("sign-out");
+
+            this.$store.commit("signOut");
+        },
         showNavigationDrawer() {
             EventBus.$emit("show-navigation-drawer")
         }
